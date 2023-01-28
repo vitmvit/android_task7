@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.clevertec.task7.MainActivity"
+        android:background="@color/white"
+        android:id="@+id/first_fragment">
+    <Toolbar
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/constraint_layout"
+            android:layout_alignParentTop="true">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/forms_title"
+                  android:gravity="center"
+                  style="@style/TitleStyle"
+                  android:layout_gravity="left"
+                  android:text="@string/title"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintStart_toStartOf="parent">
+        </TextView>
+        <ImageButton
+                android:layout_gravity="right"
+                style="?android:attr/borderlessButtonStyle"
+                android:id="@+id/image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_class_black_24dp"
+                tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+                app:layout_constraintEnd_toEndOf="parent"/>
+    </Toolbar>
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/constraint_layout"
+            android:layout_above="@+id/forms_image"/>
+    <ImageView
+            android:id="@+id/forms_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@+id/appwidget_label"
+            android:layout_marginTop="@dimen/distance_20dp"
+            android:layout_marginRight="@dimen/distance_20dp"
+            android:layout_marginLeft="@dimen/distance_20dp"
+            android:layout_above="@+id/button_send"/>
+    <Button
+            android:id="@+id/button_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
+
