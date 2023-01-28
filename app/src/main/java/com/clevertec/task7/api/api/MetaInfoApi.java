@@ -1,4 +1,4 @@
-package com.clevertec.task7.api;
+package com.clevertec.task7.api.api;
 
 import com.clevertec.task7.model.dto.FormRequestDto;
 import com.clevertec.task7.model.dto.MetaDto;

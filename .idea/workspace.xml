@@ -15,7 +15,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd5eb30e-4d6b-47ac-8b85-a9f72ce419c0" name="Changes" comment="" />
+    <list default="true" id="fd5eb30e-4d6b-47ac-8b85-a9f72ce419c0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/api/service/MetaInfoApiServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/adapter/RecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/adapter/RecyclerViewAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/api/MetaInfoApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/api/api/MetaInfoApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/api/MetaInfoApiProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/api/api/MetaInfoApiProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/api/MetaInfoApiService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/api/impl/MetaInfoApiServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/api/impl/MetainfoApiProviderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/api/impl/MetaInfoApiProviderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/constant/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/constant/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/model/dto/parent/MetaNameTypeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/model/dto/parent/MetaNameTypeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/model/pojo/RecyclerItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,12 +65,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="vitmvit &lt;120332119+vitmvit@users.noreply.github.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -62,17 +89,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/vitmvit/bin/projects/clevertec/android_task7/app/src/main/res/layout&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.24367817&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "android-custom-view/Users/vitmvit/Library/Android/sdk/sources/android-32/android/view/View.java_SELECTED": "View",
+    "last_opened_file_path": "/Users/vitmvit/bin/projects/clevertec/android_task7/app/src/main/res/layout",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.24367817"
+  },
+  "keyToStringList": {
+    "android-custom-view/Users/vitmvit/Library/Android/sdk/sources/android-32/android/view/View.java_View_DIMENSIONS": [
+      "1080",
+      "1920"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
@@ -81,6 +115,9 @@
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.clevertec.task7.adapter" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.clevertec.task7" />
     </key>
   </component>
   <component name="RunManager">
@@ -132,12 +169,28 @@
       <workItem from="1674836542550" duration="35000" />
       <workItem from="1674836595937" duration="27426000" />
       <workItem from="1674868302207" duration="498000" />
-      <workItem from="1674868817716" duration="779000" />
+      <workItem from="1674868817716" duration="1327000" />
+      <workItem from="1674895768739" duration="21788000" />
     </task>
+    <task id="LOCAL-00001" summary="First commit">
+      <created>1674869794157</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674869794157</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -151,11 +204,6 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/fragment/FirstFragment.java</url>
           <line>71</line>
           <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/clevertec/task7/api/impl/MetainfoApiProviderImpl.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

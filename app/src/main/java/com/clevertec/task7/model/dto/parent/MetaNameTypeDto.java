@@ -17,7 +17,8 @@ public abstract class MetaNameTypeDto extends MetaTitleDto {
         return type;
     }
 
-    public void setType(String type) {
+    public String setType(String type) {
         this.type = type;
+        return type;
     }
 }

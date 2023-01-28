@@ -1,4 +1,4 @@
-package com.clevertec.task7.api;
+package com.clevertec.task7.api.api;
 
 public interface MetaInfoApiProvider {
 

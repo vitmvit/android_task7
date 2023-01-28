@@ -1,15 +1,15 @@
 package com.clevertec.task7.api.impl;
 
-import com.clevertec.task7.api.MetaInfoApi;
-import com.clevertec.task7.api.MetaInfoApiProvider;
+import com.clevertec.task7.api.api.MetaInfoApi;
+import com.clevertec.task7.api.api.MetaInfoApiProvider;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MetainfoApiProviderImpl implements MetaInfoApiProvider {
+public class MetaInfoApiProviderImpl implements MetaInfoApiProvider {
 
     private final MetaInfoApi metaInfoApi;
 
-    public MetainfoApiProviderImpl() {
+    public MetaInfoApiProviderImpl() {
         Retrofit retrofit = new Retrofit
                 .Builder()
                 .baseUrl("http://test.clevertec.ru/tt/")
