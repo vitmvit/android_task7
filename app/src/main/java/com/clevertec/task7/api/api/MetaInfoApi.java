@@ -1,7 +1,7 @@
-package com.clevertec.task7.api;
+package com.clevertec.task7.api.api;
 
-import com.clevertec.task7.model.dto.FormRequestDto;
-import com.clevertec.task7.model.dto.MetaDto;
+import com.clevertec.task7.model.FormRequestDto;
+import com.clevertec.task7.model.MetaDto;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

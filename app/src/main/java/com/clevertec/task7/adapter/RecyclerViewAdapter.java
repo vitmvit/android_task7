@@ -11,8 +11,8 @@ import android.widget.*;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import com.clevertec.task7.R;
-import com.clevertec.task7.model.dto.FormRequestDto;
-import com.clevertec.task7.model.dto.MetaFieldDto;
+import com.clevertec.task7.model.FormRequestDto;
+import com.clevertec.task7.model.MetaFieldDto;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private final List<MetaFieldDto> listItems;
     private final Activity mContext;
-    private FormRequestDto formRequestDto = new FormRequestDto();
+    private final FormRequestDto formRequestDto = new FormRequestDto();
 
     public RecyclerViewAdapter(List<MetaFieldDto> listItems, Activity mContext) {
         this.listItems = listItems;
@@ -67,15 +67,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
         final MetaFieldDto metaFieldDto = listItems.get(position);
 
         if (this.getItemViewType(position) == 0) {
-            ((ViewHolderText) holder).fieldName.setText(metaFieldDto.getTitle());
+            ((ViewHolderText) holder).fieldTitle.setText(metaFieldDto.getTitle());
             ((ViewHolderText) holder).programName = (metaFieldDto.getName());
 
 
         } else if (this.getItemViewType(position) == 1) {
-            ((ViewHolderNumber) holder).txtName.setText(metaFieldDto.getTitle());
+            ((ViewHolderNumber) holder).fieldTitle.setText(metaFieldDto.getTitle());
             ((ViewHolderNumber) holder).programName = (metaFieldDto.getName());
         } else {
-            ((ViewHolderComboBox) holder).txtName.setText(metaFieldDto.getTitle());
+            ((ViewHolderComboBox) holder).fieldTitle.setText(metaFieldDto.getTitle());
             ((ViewHolderComboBox) holder).programName = (metaFieldDto.getName());
             ((ViewHolderComboBox) holder).mapValue = (metaFieldDto.getValues());
 
@@ -93,13 +93,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     public class ViewHolderText extends ViewHolder {
 
-        public TextView fieldName;
+        public TextView fieldTitle;
         public EditText fieldText;
         public String programName;
 
         public ViewHolderText(View itemView) {
             super(itemView);
-            fieldName = itemView.findViewById(R.id.textViewTitle);
+            fieldTitle = itemView.findViewById(R.id.textViewTitle);
             fieldText = itemView.findViewById(R.id.edit_text);
 
             fieldText.addTextChangedListener(new TextWatcher() {
@@ -121,13 +121,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     public class ViewHolderNumber extends ViewHolder {
 
-        public TextView txtName;
+        public TextView fieldTitle;
         public EditText fieldText;
         public String programName;
 
         public ViewHolderNumber(View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.textViewTitle);
+            fieldTitle = itemView.findViewById(R.id.textViewTitle);
             fieldText = itemView.findViewById(R.id.edit_number);
             fieldText.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -148,14 +148,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     public class ViewHolderComboBox extends ViewHolder {
 
-        public TextView txtName;
+        public TextView fieldTitle;
         public Spinner spinner;
         public String programName;
         public Map<String, String> mapValue;
 
         public ViewHolderComboBox(View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.textViewTitle);
+            fieldTitle = itemView.findViewById(R.id.textViewTitle);
             spinner = itemView.findViewById(R.id.combobox);
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override

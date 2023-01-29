@@ -6,14 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.clevertec.task7.adapter.RecyclerViewAdapter;
-import com.clevertec.task7.api.impl.MetaInfoApiServiceImpl;
+import com.clevertec.task7.api.service.MetaInfoApiService;
 import com.clevertec.task7.fragment.ShowDialogFragment;
-import com.clevertec.task7.model.dto.FormRequestDto;
-import com.clevertec.task7.model.dto.MetaDto;
+import com.clevertec.task7.model.FormRequestDto;
+import com.clevertec.task7.model.MetaDto;
+
+import static com.clevertec.task7.constant.Constants.DEF_VALUE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,8 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferencesDefault();
 
-        MetaInfoApiServiceImpl atmAnswer = new MetaInfoApiServiceImpl(this);
-        atmAnswer.getInfo();
+        MetaInfoApiService metaInfoApiService = new ViewModelProvider(this).get(MetaInfoApiService.class);
+        LiveData<MetaDto> metaDtoLiveData = metaInfoApiService.getQuery();
+        metaDtoLiveData.observe(this, new Observer<MetaDto>() {
+            @Override
+            public void onChanged(MetaDto metaDto) {
+                loadInfo(metaDto);
+            }
+        });
     }
 
     public void loadInfo(MetaDto metaDto) {
@@ -44,23 +55,27 @@ public class MainActivity extends AppCompatActivity {
         loadImage(metaDto);
         progressBarInVisible();
 
-        Button button_send = findViewById(R.id.button_send);
-        ImageButton image_button = findViewById(R.id.image_button);
+        Button buttonSend = findViewById(R.id.button_send);
+        ImageButton imageButton = findViewById(R.id.image_button);
 
-        button_send.setOnClickListener(new View.OnClickListener() {
+        buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBarVisible();
+
                 FormRequestDto formRequestDto = adapter.getFormRequestDto();
                 if (formRequestDto.isEmpty()) {
                     Toast.makeText(v.getContext(), R.string.EMPTY_FORM, Toast.LENGTH_SHORT).show();
                 } else {
-                    MetaInfoApiServiceImpl atmAnswer = new MetaInfoApiServiceImpl(new MainActivity());
-                    atmAnswer.sendForm(formRequestDto);
+                    MetaInfoApiService answer = new MetaInfoApiService();
+                    answer.sendForm(formRequestDto);
                 }
+
+                progressBarInVisible();
             }
         });
 
-        image_button.setOnClickListener(new View.OnClickListener() {
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toShowContactsFragment();
@@ -70,11 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void toShowContactsFragment() {
         ShowDialogFragment dialog = new ShowDialogFragment();
-        dialog.show(getSupportFragmentManager(), "custom");
+        dialog.show(getSupportFragmentManager(), String.valueOf(R.string.tag));
     }
 
     public void loadResults(String operationResultDto) {
-
         sharedPreferences = getAppContext().getSharedPreferences(String.valueOf(R.string.NAME_SP), MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit().clear();
@@ -85,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     private void sharedPreferencesDefault() {
         sharedPreferences = getAppContext().getSharedPreferences(String.valueOf(R.string.NAME_SP), MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit().clear();
-        editor.putString(String.valueOf(R.string.KEY_SP_NAME), String.valueOf(R.string.DEF_VALUE));
+        editor.putString(String.valueOf(R.string.KEY_SP_NAME), DEF_VALUE);
         editor.apply();
     }
 

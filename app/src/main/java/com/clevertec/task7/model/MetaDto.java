@@ -1,6 +1,6 @@
-package com.clevertec.task7.model.dto;
+package com.clevertec.task7.model;
 
-import com.clevertec.task7.model.dto.parent.MetaTitleDto;
+import com.clevertec.task7.model.parent.MetaTitleDto;
 
 import java.util.List;
 

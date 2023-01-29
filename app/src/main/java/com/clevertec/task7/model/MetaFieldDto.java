@@ -1,6 +1,6 @@
-package com.clevertec.task7.model.dto;
+package com.clevertec.task7.model;
 
-import com.clevertec.task7.model.dto.parent.MetaNameTypeDto;
+import com.clevertec.task7.model.parent.MetaNameTypeDto;
 
 import java.util.Map;
 

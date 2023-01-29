@@ -6,4 +6,5 @@ public class Constants {
     public static final String NUMBER_FIELD = "Числовое поле";
     public static final String BASE_URL = "http://test.clevertec.ru/tt/";
     public static final String BUTTON_TEXT = "OK";
+    public static final String DEF_VALUE = "Данные отсутствуют";
 }

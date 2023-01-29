@@ -1,4 +1,4 @@
-package com.clevertec.task7.model.dto;
+package com.clevertec.task7.model;
 
 import java.io.Serializable;
 import java.util.HashMap;

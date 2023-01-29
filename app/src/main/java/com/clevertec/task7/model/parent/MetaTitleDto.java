@@ -1,4 +1,4 @@
-package com.clevertec.task7.model.dto.parent;
+package com.clevertec.task7.model.parent;
 
 public abstract class MetaTitleDto {
 

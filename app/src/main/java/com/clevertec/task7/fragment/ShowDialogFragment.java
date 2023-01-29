@@ -16,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.clevertec.task7.constant.Constants.BUTTON_TEXT;
+import static com.clevertec.task7.constant.Constants.DEF_VALUE;
 
 public class ShowDialogFragment extends DialogFragment {
 
@@ -31,7 +32,7 @@ public class ShowDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         sharedPreferences = MainActivity.getAppContext().getSharedPreferences(String.valueOf(R.string.NAME_SP), MODE_PRIVATE);
-        String result = sharedPreferences.getString(String.valueOf(R.string.KEY_SP_NAME), String.valueOf(R.string.DEF_VALUE));
+        String result = sharedPreferences.getString(String.valueOf(R.string.KEY_SP_NAME), DEF_VALUE);
 
         builder.setTitle(R.string.QUERY_RESULT)
                 .setMessage(result)

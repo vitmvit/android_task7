@@ -8,5 +8,5 @@
     <string name="QUERY_RESULT">Результат запроса</string>
     <string name="NAME_SP">name</string>
     <string name="KEY_SP_NAME">key</string>
-    <string name="DEF_VALUE">Данные отсутствуют</string>
+    <string name="tag">custom</string>
 </resources>
