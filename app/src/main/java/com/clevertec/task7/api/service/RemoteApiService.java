@@ -7,25 +7,26 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.clevertec.task7.MainActivity;
 import com.clevertec.task7.R;
-import com.clevertec.task7.api.provider.MetaInfoApiProvider;
+import com.clevertec.task7.api.provider.RemoteApiProvider;
 import com.clevertec.task7.dagger.component.DaggerApiComponent;
 import com.clevertec.task7.model.FormRequestDto;
 import com.clevertec.task7.model.MetaDto;
+import com.clevertec.task7.model.ResultDto;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MetaInfoApiService extends ViewModel {
+public class RemoteApiService extends ViewModel {
 
     @SuppressLint("StaticFieldLeak")
     private final MainActivity mainActivity = new MainActivity();
-    private final MetaInfoApiProvider metaInfoApiProvider;
+    private final RemoteApiProvider remoteApiProvider;
     private MutableLiveData<MetaDto> mutableLiveDataGet;
 
-    public MetaInfoApiService() {
-        metaInfoApiProvider = new MetaInfoApiProvider();
-        DaggerApiComponent.create().inject(metaInfoApiProvider);
+    public RemoteApiService() {
+        remoteApiProvider = new RemoteApiProvider();
+        DaggerApiComponent.create().inject(remoteApiProvider);
     }
 
     public LiveData<MetaDto> getQuery() {
@@ -37,7 +38,7 @@ public class MetaInfoApiService extends ViewModel {
     }
 
     public void getInfo() {
-        Call<MetaDto> call = metaInfoApiProvider.getMetaInfoApi().getMetaInfo();
+        Call<MetaDto> call = remoteApiProvider.getMetaInfoApi().getMetaInfo();
         call.enqueue(new Callback<MetaDto>() {
             @Override
             public void onResponse(@NotNull Call<MetaDto> call, @NotNull Response<MetaDto> response) {
@@ -54,16 +55,16 @@ public class MetaInfoApiService extends ViewModel {
     }
 
     public void sendForm(FormRequestDto formRequestDto) {
-        Call<String> call = metaInfoApiProvider.getMetaInfoApi().formRequest(formRequestDto);
-        call.enqueue(new Callback<String>() {
+        Call<ResultDto> call = remoteApiProvider.getMetaInfoApi().formRequest(formRequestDto);
+        call.enqueue(new Callback<ResultDto>() {
             @Override
-            public void onResponse(@NotNull Call<String> call, @NotNull Response<String> response) {
+            public void onResponse(@NotNull Call<ResultDto> call, @NotNull Response<ResultDto> response) {
                 assert response.body() != null;
                 mainActivity.loadResults(response.body());
             }
 
             @Override
-            public void onFailure(@NotNull Call<String> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<ResultDto> call, @NotNull Throwable t) {
                 Toast.makeText(MainActivity.getAppContext(), R.string.DATA_LOADING_ERROR, Toast.LENGTH_SHORT).show();
             }
         });

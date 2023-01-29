@@ -17,7 +17,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static com.clevertec.task7.constant.Constants.NUMBER_FIELD;
 import static com.clevertec.task7.constant.Constants.TEXT_FIELD;
@@ -63,24 +62,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NotNull final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-
         final MetaFieldDto metaFieldDto = listItems.get(position);
-
         if (this.getItemViewType(position) == 0) {
             ((ViewHolderText) holder).fieldTitle.setText(metaFieldDto.getTitle());
             ((ViewHolderText) holder).programName = (metaFieldDto.getName());
-
-
         } else if (this.getItemViewType(position) == 1) {
             ((ViewHolderNumber) holder).fieldTitle.setText(metaFieldDto.getTitle());
             ((ViewHolderNumber) holder).programName = (metaFieldDto.getName());
         } else {
             ((ViewHolderComboBox) holder).fieldTitle.setText(metaFieldDto.getTitle());
             ((ViewHolderComboBox) holder).programName = (metaFieldDto.getName());
-            ((ViewHolderComboBox) holder).mapValue = (metaFieldDto.getValues());
-
             List<String> valueList = new ArrayList<>(metaFieldDto.getValues().values());
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.mContext, android.R.layout.simple_spinner_item, valueList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this.mContext, android.R.layout.simple_spinner_item, valueList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             ((ViewHolderComboBox) holder).spinner.setAdapter(adapter);
         }
@@ -151,7 +144,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
         public TextView fieldTitle;
         public Spinner spinner;
         public String programName;
-        public Map<String, String> mapValue;
 
         public ViewHolderComboBox(View itemView) {
             super(itemView);
@@ -160,14 +152,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    String value = spinner.getSelectedItem().toString();
-                    String key = null;
-                    for (Map.Entry<String, String> item : mapValue.entrySet()) {
-                        if (item.getValue().equals(value)) {
-                            key = item.getKey();
-                        }
-                    }
-                    formRequestDto.putKeyValue(programName, key);
+                    formRequestDto.putKeyValue(programName, spinner.getSelectedItem().toString());
                 }
 
                 @Override

@@ -1,11 +1,11 @@
 package com.clevertec.task7.dagger.component;
 
-import com.clevertec.task7.api.provider.MetaInfoApiProvider;
-import com.clevertec.task7.dagger.module.MetaInfoProviderModule;
+import com.clevertec.task7.api.provider.RemoteApiProvider;
+import com.clevertec.task7.dagger.module.RemoteApiProviderModule;
 import dagger.Component;
 
-@Component(modules = MetaInfoProviderModule.class)
+@Component(modules = RemoteApiProviderModule.class)
 public interface ApiComponent {
 
-    void inject(MetaInfoApiProvider apiProvider);
+    void inject(RemoteApiProvider apiProvider);
 }

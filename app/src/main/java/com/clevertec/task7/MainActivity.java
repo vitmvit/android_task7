@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.clevertec.task7.adapter.RecyclerViewAdapter;
-import com.clevertec.task7.api.service.MetaInfoApiService;
+import com.clevertec.task7.api.service.RemoteApiService;
 import com.clevertec.task7.fragment.ShowDialogFragment;
 import com.clevertec.task7.model.FormRequestDto;
 import com.clevertec.task7.model.MetaDto;
+import com.clevertec.task7.model.ResultDto;
 
 import static com.clevertec.task7.constant.Constants.DEF_VALUE;
 
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferencesDefault();
 
-        MetaInfoApiService metaInfoApiService = new ViewModelProvider(this).get(MetaInfoApiService.class);
-        LiveData<MetaDto> metaDtoLiveData = metaInfoApiService.getQuery();
+        RemoteApiService remoteApiService = new ViewModelProvider(this).get(RemoteApiService.class);
+        LiveData<MetaDto> metaDtoLiveData = remoteApiService.getQuery();
         metaDtoLiveData.observe(this, new Observer<MetaDto>() {
             @Override
             public void onChanged(MetaDto metaDto) {
@@ -67,8 +68,9 @@ public class MainActivity extends AppCompatActivity {
                 if (formRequestDto.isEmpty()) {
                     Toast.makeText(v.getContext(), R.string.EMPTY_FORM, Toast.LENGTH_SHORT).show();
                 } else {
-                    MetaInfoApiService answer = new MetaInfoApiService();
+                    RemoteApiService answer = new RemoteApiService();
                     answer.sendForm(formRequestDto);
+                    animateButtonImage();
                 }
 
                 progressBarInVisible();
@@ -88,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), String.valueOf(R.string.tag));
     }
 
-    public void loadResults(String operationResultDto) {
+    public void loadResults(ResultDto operationResultDto) {
         sharedPreferences = getAppContext().getSharedPreferences(String.valueOf(R.string.NAME_SP), MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit().clear();
-        editor.putString(String.valueOf(R.string.KEY_SP_NAME), operationResultDto);
+        editor.putString(String.valueOf(R.string.KEY_SP_NAME), operationResultDto.toString());
         editor.apply();
     }
 
@@ -107,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = this.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         adapter = new RecyclerViewAdapter(metaDto.getFields(), this);
         recyclerView.setAdapter(adapter);
     }
@@ -133,5 +134,10 @@ public class MainActivity extends AppCompatActivity {
     private void progressBarInVisible() {
         ProgressBar progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    private void animateButtonImage() {
+        ImageButton button = findViewById(R.id.image_button);
+        button.animate().rotationXBy(360f).setDuration(700);
     }
 }
