@@ -17,7 +17,8 @@
         <activity
                 android:name=".MainActivity"
                 android:exported="true"
-                android:theme="@style/Theme.Task7.NoActionBar">
+                android:theme="@style/Theme.Task7.NoActionBar"
+                tools:ignore="MissingClass">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

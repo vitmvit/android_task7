@@ -2,20 +2,22 @@ package com.clevertec.task7.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import com.clevertec.task7.R;
+import com.clevertec.task7.model.dto.FormRequestDto;
 import com.clevertec.task7.model.dto.MetaFieldDto;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.clevertec.task7.constant.Constants.NUMBER_FIELD;
 import static com.clevertec.task7.constant.Constants.TEXT_FIELD;
@@ -24,10 +26,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private final List<MetaFieldDto> listItems;
     private final Activity mContext;
+    private FormRequestDto formRequestDto = new FormRequestDto();
 
     public RecyclerViewAdapter(List<MetaFieldDto> listItems, Activity mContext) {
         this.listItems = listItems;
         this.mContext = mContext;
+    }
+
+    public FormRequestDto getFormRequestDto() {
+        return formRequestDto;
     }
 
     @Override
@@ -60,11 +67,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
         final MetaFieldDto metaFieldDto = listItems.get(position);
 
         if (this.getItemViewType(position) == 0) {
-            ((ViewHolderText) holder).txtName.setText(metaFieldDto.getName());
+            ((ViewHolderText) holder).fieldName.setText(metaFieldDto.getTitle());
+            ((ViewHolderText) holder).programName = (metaFieldDto.getName());
+
+
         } else if (this.getItemViewType(position) == 1) {
-            ((ViewHolderNumber) holder).txtName.setText(metaFieldDto.getName());
+            ((ViewHolderNumber) holder).txtName.setText(metaFieldDto.getTitle());
+            ((ViewHolderNumber) holder).programName = (metaFieldDto.getName());
         } else {
-            ((ViewHolderComboBox) holder).txtName.setText(metaFieldDto.getName());
+            ((ViewHolderComboBox) holder).txtName.setText(metaFieldDto.getTitle());
+            ((ViewHolderComboBox) holder).programName = (metaFieldDto.getName());
+            ((ViewHolderComboBox) holder).mapValue = (metaFieldDto.getValues());
 
             List<String> valueList = new ArrayList<>(metaFieldDto.getValues().values());
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.mContext, android.R.layout.simple_spinner_item, valueList);
@@ -80,22 +93,56 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     public class ViewHolderText extends ViewHolder {
 
-        public TextView txtName;
+        public TextView fieldName;
+        public EditText fieldText;
+        public String programName;
 
         public ViewHolderText(View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.textViewTitle);
+            fieldName = itemView.findViewById(R.id.textViewTitle);
+            fieldText = itemView.findViewById(R.id.edit_text);
 
+            fieldText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    formRequestDto.putKeyValue(programName, String.valueOf(s));
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
         }
     }
 
     public class ViewHolderNumber extends ViewHolder {
 
         public TextView txtName;
+        public EditText fieldText;
+        public String programName;
 
         public ViewHolderNumber(View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.textViewTitle);
+            fieldText = itemView.findViewById(R.id.edit_number);
+            fieldText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    formRequestDto.putKeyValue(programName, String.valueOf(s));
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
         }
     }
 
@@ -103,21 +150,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         public TextView txtName;
         public Spinner spinner;
+        public String programName;
+        public Map<String, String> mapValue;
 
         public ViewHolderComboBox(View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.textViewTitle);
             spinner = itemView.findViewById(R.id.combobox);
-//            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                @Override
-//                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                    Toast.makeText(view.getContext(), spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-//                }
-//
-//                @Override
-//                public void onNothingSelected(AdapterView<?> arg0) {
-//                }
-//            });
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String value = spinner.getSelectedItem().toString();
+                    String key = null;
+                    for (Map.Entry<String, String> item : mapValue.entrySet()) {
+                        if (item.getValue().equals(value)) {
+                            key = item.getKey();
+                        }
+                    }
+                    formRequestDto.putKeyValue(programName, key);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> arg0) {
+                }
+            });
         }
     }
 }

@@ -1,17 +1,16 @@
-package com.clevertec.task7.api.service;
+package com.clevertec.task7.api.impl;
 
 import android.widget.Toast;
 import com.clevertec.task7.MainActivity;
-import com.clevertec.task7.api.api.MetaInfoApiProvider;
-import com.clevertec.task7.api.api.MetaInfoApiService;
-import com.clevertec.task7.api.impl.MetaInfoApiProviderImpl;
+import com.clevertec.task7.R;
+import com.clevertec.task7.api.MetaInfoApiProvider;
+import com.clevertec.task7.api.MetaInfoApiService;
+import com.clevertec.task7.model.dto.FormRequestDto;
 import com.clevertec.task7.model.dto.MetaDto;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.clevertec.task7.constant.Constants.DATA_LOADING_ERROR;
 
 public class MetaInfoApiServiceImpl implements MetaInfoApiService {
     private final MainActivity mainActivity;
@@ -35,7 +34,25 @@ public class MetaInfoApiServiceImpl implements MetaInfoApiService {
 
             @Override
             public void onFailure(@NotNull Call<MetaDto> call, @NotNull Throwable t) {
-                Toast.makeText(mainActivity, DATA_LOADING_ERROR, Toast.LENGTH_LONG).show();
+                Toast.makeText(mainActivity, com.clevertec.task7.R.string.DATA_LOADING_ERROR, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    public void sendForm(FormRequestDto formRequestDto) {
+        Call<String> call = metaInfoApiProvider.getMetaInfoApi().formRequest(formRequestDto);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NotNull Call<String> call, @NotNull Response<String> response) {
+                assert response.body() != null;
+                String body = response.body();
+                mainActivity.loadResults(body);
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<String> call, @NotNull Throwable t) {
+                Toast.makeText(MainActivity.getAppContext(), R.string.DATA_LOADING_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

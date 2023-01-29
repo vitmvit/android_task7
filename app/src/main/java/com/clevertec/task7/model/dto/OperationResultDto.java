@@ -1,7 +1,12 @@
 package com.clevertec.task7.model.dto;
 
-public class OperationResultDto {
+import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
+public class OperationResultDto implements Serializable {
+
+    @SerializedName("result")
     private String result;
 
     public String getResult() {

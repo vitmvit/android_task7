@@ -2,4 +2,11 @@
     <string name="app_name">HOME TASK 7</string>
     <string name="send">Отправить</string>
     <string name="title">Заголовок</string>
+
+    <string name="DATA_LOADING_ERROR">Data loading error</string>
+    <string name="EMPTY_FORM">Форма пуста</string>
+    <string name="QUERY_RESULT">Результат запроса</string>
+    <string name="NAME_SP">name</string>
+    <string name="KEY_SP_NAME">key</string>
+    <string name="DEF_VALUE">Данные отсутствуют</string>
 </resources>

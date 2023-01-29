@@ -1,17 +1,26 @@
 package com.clevertec.task7.model.dto;
 
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
-public class FormRequestDto {
+public class FormRequestDto implements Serializable {
 
-    private Map<String, String> values;
+    private Map<String, String> form = new HashMap<>();
 
-    public Map<String, String> getValues() {
-        return values;
+    public Map<String, String> getForm() {
+        return form;
     }
 
-    public void setValues(Map<String, String> values) {
-        this.values = values;
+    public void setForm(Map<String, String> form) {
+        this.form = form;
     }
 
+    public void putKeyValue(String key, String value) {
+        form.put(key, value);
+    }
+
+    public boolean isEmpty() {
+        return form.size() == 0;
+    }
 }

@@ -1,21 +1,24 @@
 package com.clevertec.task7.api.impl;
 
-import com.clevertec.task7.api.api.MetaInfoApi;
-import com.clevertec.task7.api.api.MetaInfoApiProvider;
+import com.clevertec.task7.api.MetaInfoApi;
+import com.clevertec.task7.api.MetaInfoApiProvider;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
+
+import static com.clevertec.task7.constant.Constants.BASE_URL;
 
 public class MetaInfoApiProviderImpl implements MetaInfoApiProvider {
 
     private final MetaInfoApi metaInfoApi;
 
     public MetaInfoApiProviderImpl() {
-        Retrofit retrofit = new Retrofit
-                .Builder()
-                .baseUrl("http://test.clevertec.ru/tt/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        metaInfoApi = retrofit.create(MetaInfoApi.class);
+        metaInfoApi = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build()
+                .create(MetaInfoApi.class);
     }
 
     @Override
