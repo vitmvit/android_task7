@@ -17,10 +17,6 @@ public class MetaDto extends MetaTitleDto {
         this.image = image;
     }
 
-    public int getMacbook() {
-        return 1;
-    }
-
     public List<MetaFieldDto> getFields() {
         return fields;
     }
