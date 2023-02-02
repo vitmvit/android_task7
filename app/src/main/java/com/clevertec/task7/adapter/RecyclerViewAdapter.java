@@ -38,19 +38,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (listItems.get(position).getTitle().equals(TEXT_FIELD)) {
-            return 0;
-        } else if (listItems.get(position).getTitle().equals(NUMBER_FIELD)) {
-            return 1;
-        } else {
-            return 2;
-        }
+        return listItems.get(position).getType().equals(TEXT_FIELD)
+                ? 0
+                : listItems.get(position).getType().equals(NUMBER_FIELD)
+                ? 1
+                : 2;
     }
 
     @NotNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
-
         if (viewType == 0) {
             return new ViewHolderText(LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item_text, parent, false));
         } else if (viewType == 1) {
@@ -65,13 +62,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
         final MetaFieldDto metaFieldDto = listItems.get(position);
         if (this.getItemViewType(position) == 0) {
             ((ViewHolderText) holder).fieldTitle.setText(metaFieldDto.getTitle());
-            ((ViewHolderText) holder).programName = (metaFieldDto.getName());
+            ((ViewHolderText) holder).fieldName = (metaFieldDto.getName());
         } else if (this.getItemViewType(position) == 1) {
             ((ViewHolderNumber) holder).fieldTitle.setText(metaFieldDto.getTitle());
-            ((ViewHolderNumber) holder).programName = (metaFieldDto.getName());
+            ((ViewHolderNumber) holder).fieldName = (metaFieldDto.getName());
         } else {
             ((ViewHolderComboBox) holder).fieldTitle.setText(metaFieldDto.getTitle());
-            ((ViewHolderComboBox) holder).programName = (metaFieldDto.getName());
+            ((ViewHolderComboBox) holder).fieldName = (metaFieldDto.getName());
             List<String> valueList = new ArrayList<>(metaFieldDto.getValues().values());
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this.mContext, android.R.layout.simple_spinner_item, valueList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -87,8 +84,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     public class ViewHolderText extends ViewHolder {
 
         public TextView fieldTitle;
+        public String fieldName;
         public EditText fieldText;
-        public String programName;
 
         public ViewHolderText(View itemView) {
             super(itemView);
@@ -102,7 +99,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    formRequestDto.putKeyValue(programName, String.valueOf(s));
+                    formRequestDto.putKeyValue(fieldName, String.valueOf(s));
                 }
 
                 @Override
@@ -115,8 +112,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     public class ViewHolderNumber extends ViewHolder {
 
         public TextView fieldTitle;
+        public String fieldName;
         public EditText fieldText;
-        public String programName;
 
         public ViewHolderNumber(View itemView) {
             super(itemView);
@@ -129,7 +126,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    formRequestDto.putKeyValue(programName, String.valueOf(s));
+                    formRequestDto.putKeyValue(fieldName, String.valueOf(s));
                 }
 
                 @Override
@@ -142,8 +139,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     public class ViewHolderComboBox extends ViewHolder {
 
         public TextView fieldTitle;
+        public String fieldName;
         public Spinner spinner;
-        public String programName;
 
         public ViewHolderComboBox(View itemView) {
             super(itemView);
@@ -152,7 +149,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    formRequestDto.putKeyValue(programName, spinner.getSelectedItem().toString());
+                    formRequestDto.putKeyValue(fieldName, spinner.getSelectedItem().toString());
                 }
 
                 @Override
