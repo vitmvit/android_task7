@@ -57,8 +57,14 @@
     }
     ```
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/777b7a3c-8978-40e1-af95-25ad7fc83e30/Untitled.png)
-    
+|  Параметр  | Описание |
+| ------------- | ------------- |
+| Заголовок формы  | Content Cell  |
+| Ссылка на картинку  | Content Cell  |
+| Отображаемое название поля  | Content Cell  |
+| Программное название поля | Coеtent Cell  |
+| Тип поля| Coеtent Cell  |
+| Возможные значения поля | Coеtent Cell  |
   **Спецификация операции отправки введенных данных**
     
   **Запрос:** POST http://test.clevertec.ru/tt/data/
