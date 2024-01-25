@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout android:layout_height="wrap_content"
+                  android:layout_width="match_parent"
+                  tools:ignore="MissingConstraints">
+        <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/distance_20dp"
+                app:cardCornerRadius="@dimen/distance_35dp">
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appwidget_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@+id/appwidget_label"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/ic_text_snippet_black_24dp"
+                    style="@style/BackgroundWidgetStyle"/>
+        </androidx.cardview.widget.CardView>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/textViewTitle"
+                  style="@style/TitleStyle"
+                  android:layout_gravity="center_vertical"
+                  android:text="@string/title"/>
+        <EditText
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/distance_40dp"
+                android:layout_marginRight="@dimen/distance_20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:id="@+id/edit_number"
+                style="@style/TitleStyle"
+                android:inputType="numberDecimal"
+                android:hint="@string/title"
+                android:layout_alignParentEnd="true"
+                tools:ignore="TouchTargetSizeCheck"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
